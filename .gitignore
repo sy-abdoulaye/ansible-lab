@@ -1,1 +1,6 @@
 env*
+.env
+.vault_pass*
+*.retry
+__pycache__/
+inventory/hosts.yaml

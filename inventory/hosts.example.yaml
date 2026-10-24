@@ -1,0 +1,13 @@
+---
+# Inventaire d'exemple : copier en hosts.yaml (ignoré par git) et renseigner
+# les vrais routeurs. Connexion et identifiants : voir group_vars/routers.yaml.
+datacenter:
+  children:
+    routers:
+      hosts:
+        R1:
+          ansible_host: 192.0.2.1
+        R2:
+          ansible_host: 192.0.2.2
+        R3:
+          ansible_host: 192.0.2.3

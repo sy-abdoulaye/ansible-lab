@@ -1,18 +1,18 @@
 ---
-- name:  Device Cisco IOSXR
+- name: Device Cisco IOSXR
   hosts: routers
   gather_facts: false
-  connection: ansible.netcommon.network_cli
 
   tasks:
-  - name: Gather all facts
-    cisco.iosxr.iosxr_facts:
-      gather_subset: min
-      gather_network_resources: interfaces
-  - name: Display Device Info
-    debug:
-      msg:
-        - "Hostname: {{ ansible_net_hostname }}"
-        - "IOS-XE Version: {{ ansible_net_version }}"
-        - "Model: {{ ansible_net_model }}"
-        - "Interfaces {{ ansible_network_resources['interfaces'] }}"
+    - name: Gather all facts
+      cisco.iosxr.iosxr_facts:
+        gather_subset: min
+        gather_network_resources: interfaces
+
+    - name: Display Device Info
+      ansible.builtin.debug:
+        msg:
+          - "Hostname: {{ ansible_net_hostname }}"
+          - "IOS-XR Version: {{ ansible_net_version }}"
+          - "Model: {{ ansible_net_model }}"
+          - "Interfaces: {{ ansible_network_resources['interfaces'] }}"

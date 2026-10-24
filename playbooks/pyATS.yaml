@@ -1,24 +1,23 @@
 ---
-- name:  Device Cisco IOSXR
+- name: Device Cisco IOSXR
   hosts: routers
   gather_facts: false
-  connection: ansible.netcommon.network_cli
   roles:
     - ansible-pyats
 
   tasks:
-  - name: Get Version Info
-    pyats_parse_command:
-      command: show version
-    register: version_output
+    - name: Get Version Info
+      pyats_parse_command:
+        command: show version
+      register: version_output
 
-  - name: Get BGP Protocol Info
-    pyats_parse_command:
-      command: show bgp summary
-    register: bgp_output
+    - name: Get BGP Protocol Info
+      pyats_parse_command:
+        command: show bgp summary
+      register: bgp_output
 
-  - name: Display Device Info
-    debug:
-      msg:
-        - "show version output parsed: {{ version_output|to_json(indent=4) }}"
-        - "show bgp summary output parsed: {{ bgp_output|to_json(indent=4) }}"
+    - name: Display Device Info
+      ansible.builtin.debug:
+        msg:
+          - "show version output parsed: {{ version_output | to_nice_json }}"
+          - "show bgp summary output parsed: {{ bgp_output | to_nice_json }}"
